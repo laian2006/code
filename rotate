@@ -1,0 +1,67 @@
+#include<stdio.h>
+
+void rotateLtoR(int a[],int n, int offset)
+{
+    int b[n];
+    int i;
+    for (i=0;i<n;i++)
+    {
+        b[i]=a[i];
+    }
+    for (i=0;i<n;i++)
+    {
+        if (i+offset<n)
+        {
+            a[i]=b[i+offset];
+        }
+        else{
+            a[i]=b[offset+i-n];
+        }
+    }
+}
+void rotateRtoL(int a[],int n, int offset)
+{
+    int b[n];
+    int i;
+    for (i=0;i<n;i++)
+    {
+        b[i]=a[i];
+    }
+    for (i=n-1;i>=0;i--)
+    {
+        if (i-offset>=0)
+        {
+            a[i]=b[i-offset];
+        }
+        else{
+            a[i]=b[n+i-offset];
+        }
+    }
+}
+int main()
+{
+    int i,n;
+    int a[100],b[100];
+    int offset;
+    printf("Num of element: ");
+    scanf("%d",&n);
+    for (i=0;i<n;i++)
+    {
+        printf("a[%d]: ",i);
+        scanf("%d",&a[i]);
+    }
+    for (i=0;i<n;i++)
+    {
+        b[i]=a[i];
+    }
+    printf("offset: ");
+    scanf("%d",&offset);
+    rotateLtoR(a,n,offset);
+    rotateRtoL(b,n,offset);
+    printf("L to R    R to L\n");
+    for (i=0;i<n;i++)
+    {
+        printf("  %d        %d\n",a[i],b[i]);
+    }
+    return 0;
+}
